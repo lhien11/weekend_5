@@ -20,7 +20,7 @@ router.post('/employees', (req, res, next) => {
         employee_id: req.body.employee_id,
         salary: req.body.salary,
         title: req.body.title,
-        status: req.body.status
+        active: req.body.active
     };
     // Get a Postgres client from the connection pool
     pg.connect(connectionString, (err, client, done) => {
@@ -34,7 +34,7 @@ router.post('/employees', (req, res, next) => {
             });
         }
         // SQL Query > Insert Data
-        client.query('INSERT INTO items(first_name, last_name, title, employee_id, salary) values($1, $2, $3, $4, $5)', [data.first_name, data.last_name, data.title, data.employee_id, data.salary]);
+        client.query('INSERT INTO employees(first_name, last_name, employee_id, salary, title, active) values($1, $2, $3, $4, $5, $6)', [data.first_name, data.last_name, data.employee_id, data.salary, data.title, data.active]);
         // SQL Query > Select Data
         const query = client.query('SELECT * FROM employees ORDER BY id ASC');
         // Stream results back one row at a time
@@ -76,9 +76,5 @@ router.get('/employees', (req, res, next) => {
     });
 
 });
-
-
-
-
 
 module.exports = router;
