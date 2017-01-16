@@ -26,14 +26,15 @@
     </tr>
     <tr ng-repeat="em in ac.employees">
 
+      <!-- <td>{{em.id}}</td> -->
       <td>{{em.first_name}}</td>
       <td>{{em.last_name}}</td>
       <td>{{em.title}}</td>
       <td>{{em.employee_id}}</td>
       <td>{{em.salary}}</td>
 
-      <td><button class="btn btn-danger" ng-click="em.removeEmployee(id)">Remove</button></td>
-      <td><button class="btn btn-warning" ng-click="em.editEmployee(id)">Edit</button></td>
+      <td><button class="btn btn-danger" ng-click="ac.removeEmployee(em.id)">Remove</button></td>
+      <td><button class="btn btn-warning" ng-click="ac.editEmployee(em.id)">Edit</button></td>
     </tr>
   </tbody>
 </table>

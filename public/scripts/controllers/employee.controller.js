@@ -2,12 +2,17 @@
 
 app.controller("EmployeeController", ["$http", function($http) {
     console.log("EmployeeController loaded");
-
     var vm = this;
 
-    console.log("employee list ", vm.employees);
-
     getEmployees();
+
+    function getEmployees() {
+        $http.get('/employees')
+            .then((response) => {
+                vm.employees = response.data;
+            });
+    }
+
 
 
     // add a new employee
@@ -17,7 +22,8 @@ app.controller("EmployeeController", ["$http", function($http) {
         vm.employees.active = true;
         $http.post('/employees', vm.employees)
             .then((response) => {
-                    console.log('response: ', response.data);
+                    //console.log('response: ', response.data);
+                    getEmployees();
                 },
                 (req, res) => {
                     console.log('Error in posting', res);
@@ -25,26 +31,22 @@ app.controller("EmployeeController", ["$http", function($http) {
 
     };
 
+
     // remove an employee
-    vm.removeEmployee = (id) => {
-      console.log("remove is slicked");
-      $http.delete('/employees/' + id)
-      .success((data) => {
-        vm.employees = data;
-        getEmployees();
-        console.log("Delete Successfully");
-      })
-      .error((data) => {
-        console.log('Error: ', data);
-      });
+    vm.removeEmployee = function(id) {
+        //console.log("remove is slicked ", id);
+        $http.delete('/employees/' + id)
+            .success((data) => {
+                vm.employees = data;
+                getEmployees();
+                console.log("Delete Successfully");
+            })
+            .error((data) => {
+                console.log('Error: ', data);
+            });
+
     };
 
-    function getEmployees(){
-      $http.get('/employees')
-        .then((response) => {
-          vm.employees = response.data;
-        });
-    }
 
 
 
