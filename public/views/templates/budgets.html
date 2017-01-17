@@ -1,0 +1,37 @@
+<div class="container">
+<h1>Budget List</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Month</th>
+      <th>Year</th>
+      <th>Month_Budget</th>
+      <th>&nbsp;</th>
+    </tr>
+  </thead>
+   <tbody>
+    <tr>
+      <td><input type="number" class="form-control" ng-model="bc.budgets.month" placeholder="January"></td>
+      <td><input type="number" class="form-control" ng-model="bc.budgets.year" placeholder="2017"></td>
+
+      <td><input type="number" class="form-control" ng-model="bc.budgets.monthly_budget" placeholder="100000"></td>
+
+      <td><button class="btn btn-primary" ng-click="bc.addBudget()">Add Budget</button></td>
+    </tr>
+    <tr ng-repeat="em in bc.budgets">
+
+      <td>{{em.month}}</td>
+      <td>{{em.year}}</td>
+      <td>{{em.monthly_budget}}</td>
+
+      <td><button class="btn btn-danger" ng-click="bc.removeBudget(em.id)">Remove</button></td>
+      <td><button class="btn btn-warning" ng-click="bc.editBudget(em.id)">Edit</button></td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+
+
+</body>
