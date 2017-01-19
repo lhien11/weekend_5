@@ -3,6 +3,7 @@
 app.controller("EmployeeController", ["$http", function($http) {
     console.log("EmployeeController loaded");
     var vm = this;
+    vm.budget = "";
 
     getEmployees();
 
@@ -53,17 +54,6 @@ app.controller("EmployeeController", ["$http", function($http) {
             });
     };
 
-    // vm.editEmployee = function(id) {
-    //     console.log("edit is slicked ", id);
-    //     $http.get('/employees/' + id)
-    //         .then((req, res) => {
-    //             vm.employees = req.data;
-    //             // getEmployees();
-    //         })
-    //         .error((req, res) => {
-    //             console.log('Error in editing: ', res);
-    //         });
-    // };
     vm.editEmployee = function(id) {
         console.log('edit function in controller ', id);
         $http.get('/employees/' + id)
@@ -76,30 +66,5 @@ app.controller("EmployeeController", ["$http", function($http) {
                     console.log('Error in editing', res);
                 });
     };
-
-    // vm.update = function(id){
-    //   console.log("update function: ", vm.contact._id);
-    //   $http.put('/contactlist/' + vm.contact._id, vm.contact)
-    //     .then(function(res, req){
-    //       refresh();
-    //     },
-    //     function(res, req){
-    //       console.log('Error in updating', res);
-    //     });
-    // };
-
-    // vm.edit = function(id){
-    //   console.log('edit function in controller ', id);
-    //   $http.get('/contactlist/' + id)
-    //     .then(function(req, res){
-    //       vm.contact = req.data;
-    //       //console.log(response);
-    //       console.log("req in client is ", req);
-    //     },
-    //     function(req, res){
-    //       console.log('Error in editing', res);
-    //     });
-    // };
-
 
 }]);
