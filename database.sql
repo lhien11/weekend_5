@@ -20,10 +20,10 @@ CREATE TABLE budgets (
 SELECT * FROM employees;
 SELECT * FROM budget;
 
-insert into budgets(month, year, monthly_budget) values (2, 2017, 100020);
-insert into budgets(month, year, monthly_budget) values (3, 2017, 130020);
-insert into budgets(month, year, monthly_budget) values (5, 2017, 205020);
-insert into budgets(month, year, monthly_budget) values (9, 2017, 500020);
+insert into budget(month, year, monthly_budget) values (2, 2017, 100020);
+insert into budget(month, year, monthly_budget) values (3, 2017, 130020);
+insert into budget(month, year, monthly_budget) values (5, 2017, 205020);
+insert into budget(month, year, monthly_budget) values (9, 2017, 500020);
 
 -- Generated random data from from mockaroo --
 insert into employees (id, first_name, last_name, employee_id, title, salary, active) values ('Alice', 'Webb', 2001, 'Account Representative III', '95291.82', false);
