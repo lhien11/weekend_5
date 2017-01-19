@@ -10,9 +10,21 @@ CREATE TABLE employees (
     salary float,
     active boolean not null
 );
+CREATE TABLE budgets (
+  id SERIAL PRIMARY KEY,
+  month varchar(8),
+  year varchar(8),
+  monthly_budget varchar(20)
+
+);
+
+insert into budgets(month, year, monthly_budget) values (2, 2017, 100020);
+insert into budgets(month, year, monthly_budget) values (3, 2017, 130020);
+insert into budgets(month, year, monthly_budget) values (5, 2017, 205020);
+insert into budgets(month, year, monthly_budget) values (9, 2017, 500020);
 
 SELECT * FROM employees;
-
+SELECT * FROM budgets;
 -- Generated random data from from mockaroo --
 insert into employees (id, first_name, last_name, employee_id, title, salary, active) values ('Alice', 'Webb', 2001, 'Account Representative III', '95291.82', false);
 insert into employees (id, first_name, last_name, employee_id, title, salary, active) values ('Chris', 'Morrison', 2002, 'Web Developer II', '64202.44', true);

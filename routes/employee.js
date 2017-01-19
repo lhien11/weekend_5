@@ -37,19 +37,6 @@ router.post('/employees', (req, res, next) => {
             });
         }
 
-        /*
-        id SERIAL PRIMARY KEY,
-        first_name varchar(20) NOT NULL,
-        last_name  varchar(20) NOT NULL,
-        employee_id varchar(20) NOT NULL,
-        title varchar(30) NOT NULL,
-        salary float,
-        active boolean not null
-        */
-        // SQL Query > Insert Data
-
-        // insert into employees (id, first_name, last_name, employee_id, title, salary, active) values (1, 'Alice', 'Webb', 2001, 'Account Representative III', '95291.82', false);
-
         client.query('INSERT INTO employees(first_name, last_name, title, employee_id, salary, active) values($1, $2, $3, $4, $5, $6)', [data.first_name, data.last_name, data.title, data.employee_id, data.salary, data.active]);
         // SQL Query > Select Data
         const query = client.query('SELECT * FROM employees ORDER BY id ASC');
@@ -79,7 +66,7 @@ router.get('/employees', (req, res, next) => {
             });
         }
         // SQL Query > Select data
-        const query = client.query('SELECT * FROM employees ORDER BY id ASC;');
+        const query = client.query('SELECT * FROM employees;');
         // Stream results back one row at a time
         query.on('row', (row) => {
             results.push(row);
