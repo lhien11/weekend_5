@@ -13,7 +13,9 @@ router.get('/', (req, res, next) => {
 
 router.post('/employees', (req, res, next) => {
     const results = [];
+    console.log("Here in posted", req.body);
     // Grab data from http request
+
     const data = {
         first_name: req.body.first_name,
         last_name: req.body.last_name,
@@ -22,6 +24,7 @@ router.post('/employees', (req, res, next) => {
         title: req.body.title,
         active: req.body.active
     };
+    console.log(req.body);
     // Get a Postgres client from the connection pool
     pg.connect(connectionString, (err, client, done) => {
         // Handle connection errors
@@ -33,8 +36,21 @@ router.post('/employees', (req, res, next) => {
                 data: err
             });
         }
+
+        /*
+        id SERIAL PRIMARY KEY,
+        first_name varchar(20) NOT NULL,
+        last_name  varchar(20) NOT NULL,
+        employee_id varchar(20) NOT NULL,
+        title varchar(30) NOT NULL,
+        salary float,
+        active boolean not null
+        */
         // SQL Query > Insert Data
-        client.query('INSERT INTO employees(first_name, last_name, employee_id, salary, title, active) values($1, $2, $3, $4, $5, $6)', [data.first_name, data.last_name, data.employee_id, data.salary, data.title, data.active]);
+
+        // insert into employees (id, first_name, last_name, employee_id, title, salary, active) values (1, 'Alice', 'Webb', 2001, 'Account Representative III', '95291.82', false);
+
+        client.query('INSERT INTO employees(first_name, last_name, title, employee_id, salary, active) values($1, $2, $3, $4, $5, $6)', [data.first_name, data.last_name, data.title, data.employee_id, data.salary, data.active]);
         // SQL Query > Select Data
         const query = client.query('SELECT * FROM employees ORDER BY id ASC');
         // Stream results back one row at a time

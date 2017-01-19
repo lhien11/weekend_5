@@ -13,16 +13,23 @@ app.controller("EmployeeController", ["$http", function($http) {
             });
     }
 
-
-
     // add a new employee
     vm.addEmployee = function() {
         console.log("add employee not cilcked");
-        //console.log("self.employee ", vm.employee);
+        console.log("self.employee ", vm.employees);
         vm.employees.active = true;
-        $http.post('/employees', vm.employees)
+        var sendObject = {
+            "first_name": vm.employees.first_name,
+            "last_name": vm.employees.last_name,
+            "employee_id": vm.employees.employee_id,
+            "salary": vm.employees.salary,
+            "title": vm.employees.title,
+            "active": vm.employees.active
+
+        };
+        $http.post('/employees', sendObject)
             .then((response) => {
-                    //console.log('response: ', response.data);
+                    console.log('response: ', response.data);
                     getEmployees();
                 },
                 (req, res) => {
@@ -57,17 +64,17 @@ app.controller("EmployeeController", ["$http", function($http) {
     //             console.log('Error in editing: ', res);
     //         });
     // };
-    vm.editEmployee = function(id){
-      console.log('edit function in controller ', id);
-      $http.get('/employees/' + id)
-        .then(function(req, res){
-          vm.employees = req.data;
-          //console.log(response);
-          console.log("req in client is ", req.data);
-        },
-        function(req, res){
-          console.log('Error in editing', res);
-        });
+    vm.editEmployee = function(id) {
+        console.log('edit function in controller ', id);
+        $http.get('/employees/' + id)
+            .then(function(req, res) {
+                    vm.employees = req.data;
+                    //console.log(response);
+                    console.log("req in client is ", req.data);
+                },
+                function(req, res) {
+                    console.log('Error in editing', res);
+                });
     };
 
     // vm.update = function(id){
