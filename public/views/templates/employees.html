@@ -37,7 +37,7 @@
       <td>{{em.employee_id}}</td>
       <td>{{em.salary | currency:"USD$"}}</td>
       <td>{{em.salary / 12 | currency:"USD$" }}</td>
-      <td>{{em.budgetTotal}}</td>
+      <td>{{ac.budgetTotal | currency:"USD$" }}</td>
 
       <td><button class="btn btn-danger" ng-click="ac.removeEmployee(em.id)">Remove</button></td>
       <!-- <td><button class="btn btn-warning" ng-click="ac.editEmployee(em.id)">Edit</button></td> -->
