@@ -1,16 +1,14 @@
 /*jshint esversion: 6 */
 
-app.controller("EmployeeController", ["$http", function($http) {
+app.controller("EmployeeController", ["$http", "DataFactory", function($http, DataFactory) {
     console.log("EmployeeController loaded");
     var vm = this;
-    vm.budget = "";
-
     getEmployees();
-
     function getEmployees() {
         $http.get('/employees')
             .then((response) => {
                 vm.employees = response.data;
+                vm.budgetTotal += vm.employees.salary;
             });
     }
 
@@ -19,6 +17,7 @@ app.controller("EmployeeController", ["$http", function($http) {
         console.log("add employee not cilcked");
         console.log("self.employee ", vm.employees);
         vm.employees.active = true;
+        vm.budgetTotal += vm.employees.salary;
         var sendObject = {
             "first_name": vm.employees.first_name,
             "last_name": vm.employees.last_name,

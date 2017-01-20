@@ -9,6 +9,8 @@
       <th>Title</th>
       <th>Employee ID</th>
       <th>Salary</th>
+      <th>Monthly Salary</th>
+      <th>Budget Total</th>
       <th>Action</th>
       <th>&nbsp;</th>
     </tr>
@@ -21,6 +23,8 @@
       <td><input type="text" class="form-control" ng-model="ac.employees.title" placeholder="Title"></td>
       <td><input type="number" class="form-control" ng-model="ac.employees.employee_id" placeholder="Employee ID Number"></td>
       <td><input type="number" class="form-control" ng-model="ac.employees.salary" placeholder="Salary"></td>
+      <td></td>
+      <td></td>
 
       <td><button class="btn btn-primary" ng-click="ac.addEmployee()">Add Employee</button></td>
     </tr>
@@ -31,10 +35,12 @@
       <td>{{em.last_name}}</td>
       <td>{{em.title}}</td>
       <td>{{em.employee_id}}</td>
-      <td>{{em.salary}}</td>
+      <td>{{em.salary | currency:"USD$"}}</td>
+      <td>{{em.salary / 12 | currency:"USD$" }}</td>
+      <td>{{em.budgetTotal}}</td>
 
       <td><button class="btn btn-danger" ng-click="ac.removeEmployee(em.id)">Remove</button></td>
-      <td><button class="btn btn-warning" ng-click="ac.editEmployee(em.id)">Edit</button></td>
+      <!-- <td><button class="btn btn-warning" ng-click="ac.editEmployee(em.id)">Edit</button></td> -->
     </tr>
   </tbody>
 </table>
